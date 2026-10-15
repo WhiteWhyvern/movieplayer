@@ -1,1 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MKV Upload Player</title>
+  <!-- Load movi-player module -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/movi-player/dist/element.js"></script>
+</head>
+<body>
+
+  <input type="file" id="mkvInput" accept=".mkv,video/*">
+  <br><br>
+  
+  <movi-player id="player" controls style="width: 100%; max-width: 800px;"></movi-player>
+
+  <script>
+    const fileInput = document.getElementById('mkvInput');
+    const player = document.getElementById('player');
+
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        // Create a local object URL from the uploaded file
+        const objectUrl = URL.createObjectURL(file);
+        player.setAttribute('src', objectUrl);
+      }
+    });
+  </script>
+
+</body>
+</html>
 
